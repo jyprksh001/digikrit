@@ -4,12 +4,16 @@
         var myApp = angular.module("myApp", []);
         myApp.controller('SimpleController', function($scope) {
             $scope.name = "First Last";
+            $scope.address="address"
         });
     </script>
     <body>
         <div class="container" ng-controller="SimpleController">
             Name: <input type="text" ng-model="name" /> <br />
             {{ name }}
+            <br/>
+            Address:<input type="text" name="address" ng-model="address"/>
+            {{address}}
         </div>
     </body>
 </html>

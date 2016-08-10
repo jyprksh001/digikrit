@@ -9,7 +9,7 @@
                 Gender: <input type="radio" ng-model="user.gender" value="male" />male
                 <input type="radio" ng-model="user.gender" value="female" />female<br />
                 <input type="button" ng-click="reset()" value="Reset" />
-                <input type="submit" ng-click="simpleform.$valid ? update(user) : ''" value="Save" />
+                <input type="submit" ng-click="simpleform.$valid ? update(user) : ''" ng-disabled="!simpleform.$dirty" value="Save" />
             </form>
             <pre>current = {{user | json}}</pre>
             <pre>master = {{master | json}}</pre>

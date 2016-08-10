@@ -5,16 +5,19 @@
             <h3>Adding a Simple Controller</h3>
             <ul>
                 <li ng-repeat="cust in customers">
-                    {{ cust.name }} - {{ cust.city }}
+                    {{ cust.name }} - {{ cust.city }}-{{cust.partners}}
                 </li>
+                <li ng-repeat="i in partners">{{i}}</li>
             </ul>
         </div>
         <script>
             var myApp = angular.module("myApp", []);
             myApp.controller('SimpleController', function($scope) {
                 $scope.customers = [
-                    { name: 'Anuj Malik', city: 'Bengaluru' },
-                    { name: 'Deepak Kumar', city: 'Mumbai' }];
+                    { name: 'Anuj Malik', city: 'Bengaluru',partners:"Ram" },
+                    { name: 'Deepak Kumar', city: 'Mumbai',partners:"Shyam" }];
+                //confused with question either i have to modify the main object or create a new array
+                $scope.partners=['ram','shyam']
             });
         </script>
     </body>

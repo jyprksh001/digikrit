@@ -1,29 +1,39 @@
 <html ng-app="myApp">
+    <style type="text/css">
+    .preloader {
+    padding: 50px;
+    background: url('preloader.gif') no-repeat 50% 50% transparent;
+    }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <body>
         <div class="container" ng-controller="SimpleController">
             <h3>Loading Customer List</h3>
             <ul>
-                <li ng-repeat="cust in customers">
+            <div ng-show="hide" class="preloader">
+            <!-- image here via CSS -->
+            </div>
+            <li ng-repeat="cust in customers">
                     {{ cust.name }} - {{ cust.city }}
-                </li>
+            </li>
             </ul>
         </div>
         <script>
             var myApp = angular.module("myApp", []);
             myApp.controller('SimpleController', function($scope, $q, $http, $timeout) {
                 var deferred = $q.defer();
+                $scope.hide=true;
                 $timeout(function() {
                     $http.get('customers.json').success(function (data) {
-                        // process the data here
                         deferred.resolve(data);
                     }).error(function (error) {
-                        // error handling
+                        $scope.hide=false
                         deferred.reject();
                     });
                 }, 2000);
                 deferred.promise.then(function(data){
                     $scope.customers = data;
+                    $scope.hide=false;
                 });
             });
         </script>
